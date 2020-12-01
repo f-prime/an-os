@@ -1,18 +1,11 @@
 [org 0x7c00] ; Our boot sector code starts at the memory offset of 0x7c00
 
-; mov bx, hello_world ; Move the ADDRESS of hello_world into bx (bx is now a pointer) 
-; call bios_print_str
-; mov bx, hello_world
-
-mov bl, 0x01 ; Hex that we want printed
+mov bl, 0x69 ; Hex that we want printed goes into bl
 call print_hex
 
-jmp $
+jmp $ ; Loop forever
 
-%include "lib/print.asm"
-
-hello_world:
-  db "Hello World", 0 
+%include "lib/print.asm" ; Replaces this line with the code in the included file
 
 times 510-($-$$) db 0
 dw 0xaa55
